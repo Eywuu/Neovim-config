@@ -3,10 +3,10 @@ set softtabstop=4
 set expandtab
 set smartindent
 set autoindent
+set number
 
 call plug#begin('~/.local/share/nvim/site/plugged')
 " Theme stuff
-Plug 'tiagovla/tokyodark.nvim'
 Plug 'Mofiqul/dracula.nvim'
 
 " LSP support
@@ -43,6 +43,10 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'Ninja' }
 
 " Autopair 
 Plug 'windwp/nvim-autopairs'
+
+" Indenting level lines
+Plug 'lukas-reineke/indent-blankline.nvim'
+
 call plug#end()
 set termguicolors
 colorscheme dracula
@@ -71,8 +75,19 @@ lua << EOF
             "clangd", 
             "--background-index",
             "--compile-commands-dir=build",
-            "--fallback-style={BasedOnStyle: LLVM, PointerAlignment: Left" 
+            "--fallback-style={BasedOnStyle: LLVM, PointerAlignment: Left",
+            "--enable-config"
+        },
+
+        init_options = {
+            inlayHints = {
+                parameterNames = { enabled = true },
+                parameterTypes = { enabled = true },
+                variableTypes = { enabled = true },
+                functionReturnTypes = { enabled = true },
             },
+        },
+
 	capabilities = require('cmp_nvim_lsp').default_capabilities(),
 	on_attach = function(client, bufnr)
             local bufopts = { noremap=true, silent=true, buffer=bufnr }
@@ -80,6 +95,11 @@ lua << EOF
 	    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
 	    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
 	    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+            
+            
+            if client.server_capabilities.inlayHintProvider then
+                vim.lsp.inlay_hint.enable(true)    
+            end
 
             if client.server_capabilities.documentFormattingProvider then 
                 vim.api.nvim_create_augroup("LspFormatting", { clear = true })
@@ -305,5 +325,37 @@ lua << EOF
         check_ts = true,
 	fast_wrap = {},
 	disabled_filetype = { "TelescopePrompt", "vim" },
+    })
+EOF
+
+lua << EOF
+    local highlight = {
+        "RainbowRed",
+        "RainbowYellow",
+        "RainbowBlue",
+        "RainbowOrange",
+        "RainbowGreen",
+        "RainbowViolet",
+        "RainbowCyan"
+    }
+
+    local hooks = require "ibl.hooks"
+    hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+    end)
+
+    require('ibl').setup({
+        indent = { highlight = highlight},
+        whitespace = {
+            highlight = highlight,
+            remove_blankline_trail = false,
+        },
+        scope = { enabled = false }
     })
 EOF
