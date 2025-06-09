@@ -47,7 +47,10 @@ Plug 'windwp/nvim-autopairs'
 " Indenting level lines
 Plug 'lukas-reineke/indent-blankline.nvim'
 
+" Cooler dashboard
+Plug 'nvimdev/dashboard-nvim'
 call plug#end()
+
 set termguicolors
 colorscheme dracula
 
@@ -352,6 +355,9 @@ lua << EOF
     end)
 
     require('ibl').setup({
+        exclude = {
+            filetypes = { "dashboard" }
+        },
         indent = { highlight = highlight},
         whitespace = {
             highlight = highlight,
@@ -359,4 +365,8 @@ lua << EOF
         },
         scope = { enabled = false }
     })
+EOF
+
+lua << EOF
+    require('dashboard').setup({})
 EOF
