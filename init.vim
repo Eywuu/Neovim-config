@@ -49,6 +49,14 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 
 " Cooler dashboard
 Plug 'nvimdev/dashboard-nvim'
+
+" Debugging tools
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'williamboman/mason.nvim'
+Plug 'jay-babu/mason-nvim-dap.nvim'
+Plug 'nvim-neotest/nvim-nio'
+
 call plug#end()
 
 set termguicolors
@@ -369,4 +377,59 @@ EOF
 
 lua << EOF
     require('dashboard').setup({})
+EOF
+
+lua << EOF
+    local dap = require("dap")
+    local dapui = require("dapui")
+
+    dapui.setup()
+
+    dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+    end
+
+    dap.listeners.before.event_initialized["dapui_config"] = function()
+        dapui.close()
+    end
+
+    dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+    end
+
+    dap.adapters.codelldb = {
+        type = 'server',
+        port = "${port}",
+        executable = {
+            command = vim.fn.stdpath("data") .. '/mason/bin/codelldb',
+            args = { "--port", "${port}" },
+        }
+    }
+
+    dap.configurations.cpp = {
+        {
+            name = "Launch file",
+            type = "codelldb",
+            request = "launch",
+            program = function()
+                return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/build/', 'file')
+            end,
+            cwd = '${workspaceFolder}',
+            stopOnEntry = false,
+            args = {},
+
+        }
+    }
+
+    vim.keymap.set('n', '<F5>', dap.continue)
+    vim.keymap.set('n', '<F10>', dap.step_over)
+    vim.keymap.set('n', '<F11>', dap.step_into)
+    vim.keymap.set('n', '<F12>', dap.step_out)
+    vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint)
+    vim.keymap.set('n', '<leader>B', function()
+        dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+    end)
+    vim.keymap.set('n', '<leader>dr', dap.repl.open)
+    vim.keymap.set('n', '<leader>dl', dap.run_last)
+    vim.keymap.set('n', '<leader>ds', dap.continue)
 EOF
