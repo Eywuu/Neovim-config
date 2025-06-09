@@ -57,6 +57,9 @@ Plug 'williamboman/mason.nvim'
 Plug 'jay-babu/mason-nvim-dap.nvim'
 Plug 'nvim-neotest/nvim-nio'
 
+" Commandline improvements
+Plug 'folke/noice.nvim'
+Plug 'MunifTanjim/nui.nvim'
 call plug#end()
 
 set termguicolors
@@ -432,4 +435,26 @@ lua << EOF
     vim.keymap.set('n', '<leader>dr', dap.repl.open)
     vim.keymap.set('n', '<leader>dl', dap.run_last)
     vim.keymap.set('n', '<leader>ds', dap.continue)
+EOF
+
+lua << EOF
+    require('noice').setup({
+        cmdline = {
+            enabled = true,
+            view = "cmdline_popup",
+            opts = {
+                position = {
+                    row = "50%",
+                    col = "50%"
+                },
+                size = {
+                    width = 50,
+                    height = 1,
+                },
+            },
+        },
+        messages = {
+            enabled = false,
+        },
+    })
 EOF
