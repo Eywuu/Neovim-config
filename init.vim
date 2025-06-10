@@ -57,6 +57,8 @@ Plug 'nvim-neotest/nvim-nio'
 " Commandline improvements
 Plug 'folke/noice.nvim'
 Plug 'MunifTanjim/nui.nvim'
+
+Plug 'kosayoda/nvim-lightbulb'
 call plug#end()
 
 set termguicolors
@@ -80,6 +82,30 @@ EOF
 " LSP settings for C/C++
 lua << EOF
     local lspconfig = require('lspconfig')
+
+    local signs = {
+      Error = "✘",
+      Warn = "",       
+      Hint = "💡",    
+      Info = "",
+    }
+
+    for type, icon in pairs(signs) do
+      local hl = "DiagnosticSign" .. type
+      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+    end
+
+    vim.diagnostic.config({
+      virtual_text = {
+	prefix = "●",
+	spacing = 2,
+      },
+      signs = true,
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
+    })
+
 
     lspconfig.clangd.setup{
         cmd = {
