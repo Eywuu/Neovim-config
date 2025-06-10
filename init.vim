@@ -1,8 +1,5 @@
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set smartindent
-set autoindent
+set shiftwidth=2
+set softtabstop=2
 set number
 
 call plug#begin('~/.local/share/nvim/site/plugged')
@@ -114,17 +111,17 @@ lua << EOF
             if client.server_capabilities.inlayHintProvider then
                 vim.lsp.inlay_hint.enable(true)    
             end
-
-            if client.server_capabilities.documentFormattingProvider then 
-                vim.api.nvim_create_augroup("LspFormatting", { clear = true })
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    group = "LspFormatting",
-                    buffer = bufnr,
-                    callback = function()
-                        vim.lsp.buf.format({ bufnr = bufnr, async = false })
-                    end,
-                })
-            end
+            --
+            -- if client.server_capabilities.documentFormattingProvider then 
+            --     vim.api.nvim_create_augroup("LspFormatting", { clear = true })
+            --     vim.api.nvim_create_autocmd("BufWritePre", {
+            --         group = "LspFormatting",
+            --         buffer = bufnr,
+            --         callback = function()
+            --             vim.lsp.buf.format({ bufnr = bufnr, async = false })
+            --         end,
+            --     })
+            -- end
         end,
 	filetypes = {"c", "cpp", "objc", "objcpp"},
 	root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
@@ -190,7 +187,7 @@ lua << EOF
     require('nvim-treesitter.configs').setup {
         ensure_installed = { 'c', 'cpp', 'lua' },
 	highlight = { enable = true },
-	indent = { enable = true },
+	indent = { enable = false },
 	incremental_selection = { enable = true },
 	textobjects = { enable = true },
     }
