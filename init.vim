@@ -1,8 +1,5 @@
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set smartindent
-set autoindent
+set shiftwidth=2
+set softtabstop=2
 set number
 
 call plug#begin('~/.local/share/nvim/site/plugged')
@@ -190,7 +187,7 @@ lua << EOF
     require('nvim-treesitter.configs').setup {
         ensure_installed = { 'c', 'cpp', 'lua' },
 	highlight = { enable = true },
-	indent = { enable = true },
+	indent = { enable = false },
 	incremental_selection = { enable = true },
 	textobjects = { enable = true },
     }
