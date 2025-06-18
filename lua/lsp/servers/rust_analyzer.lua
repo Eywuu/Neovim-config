@@ -21,10 +21,10 @@ lspconfig.rust_analyzer.setup({
       },
       inlayHints = {
         lifetimeElisionHints = {
-          enable     = true,
-          useParameterNames = true,
+          enable     = false,
+          useParameterNames = false,
         },
-        bindingModeHints = { enable = true },
+        bindingModeHints = { enable = false },
       },
       lens = {
         enable = true,             
