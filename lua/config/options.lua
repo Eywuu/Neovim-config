@@ -2,6 +2,7 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.number = true
+vim.opt.relativenumber = true
 
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
