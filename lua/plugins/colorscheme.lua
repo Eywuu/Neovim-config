@@ -1,67 +1,32 @@
 return {
 	{
-		"Mofiqul/dracula.nvim",
+		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
-		-- config = function()
-		-- 	vim.cmd.colorscheme("dracula")
-		-- end,
-	},
-
-	{
-		"cryptomilk/nightcity.nvim",
-		version = '*',
-		priority = 1000,
-		config = function()
-			require("nightcity").setup({
-				style = "kabuki",
-
-				terminal_colors = true,
-				invert_colors = {
-				cursor = true,
-				diff = true,
-				error = true,
-				search = true,
-				selection = true,
-				signs = false,
-				statusline = true,
-				tabline = false,
+		config = function() 
+			require("gruvbox").setup({
+				terminal_colors = false, 
+				undercurl = true,
+				underline = true,
+				bold = true,
+				italic = {
+					strings = true,
+					emphasis = true,
+					comments = true,
+					operators = false,
+					folds = true,
 				},
-
-				font_style = {
-					comments = { italic = true },
-					keywords = { italic = true },
-					functions = { italic = true },
-					variables = { italic = true },
-					search = { bold = true }
-				},
-
-				on_highlights = function(groups, c)
-					groups.String = { fg = c.none, bg = c.none }
-				end,
+				strikethrough = true,
+				invert_selection = false,
+				invert_signs = false,
+				invert_tabline = false,
+				inverse = true, 
+				contrast = "", 
+				palette_overrides = {},
+				overrides = {},
+				dim_inactive = false,
+				transparent_mode = false,
 			})
-
-			vim.cmd.colorscheme("nightcity")
-		end,
+			vim.cmd.colorscheme("gruvbox")
+	end,
 	}
-
-	-- {
-	-- 	"tiesen243/vercel.nvim",
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		require("vercel").setup({
-	-- 			theme = "light",
-	-- 			transparent = false,
-	-- 			italics = {
-	-- 				comments = true,
-	-- 				keywords = true,
-	-- 				functions = true,
-	-- 				strings = true,
-	-- 				variables = true,
-	-- 				bufferline = true
-	-- 			}
-	-- 		})
-	-- 		vim.cmd.colorscheme("vercel")
-	-- 	end,
-	-- }
 }
-
