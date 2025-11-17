@@ -1,18 +1,5 @@
 local M = {}
 
-local icons = {
-  [vim.diagnostic.severity.ERROR] = "✘",
-  [vim.diagnostic.severity.WARN]  = "",
-  [vim.diagnostic.severity.HINT]  = "💡",
-  [vim.diagnostic.severity.INFO]  = "",
-}
-vim.diagnostic.config({
-  virtual_text  = true,
-  underline     = true,
-  severity_sort = true,
-  signs         = { text = icons },
-})
-
 function M.on_attach(client, bufnr)
   local opts = { noremap=true, silent=true, buffer=bufnr }
   vim.keymap.set('n','gd', vim.lsp.buf.definition, opts)
