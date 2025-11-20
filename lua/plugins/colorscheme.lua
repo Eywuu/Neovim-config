@@ -35,7 +35,7 @@ return {
 		priority = 1000,
 		config = function()
 			require('vscode').setup({
-				transparent = false,
+				transparent = true,
 				italic_comments = true,
 				disable_nvimtree_bg = false,
 				color_overrides = {},

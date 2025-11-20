@@ -41,11 +41,14 @@ return {
         },
       })
 
-      -- global mappings to toggle/focus tree
+			vim.cmd([[
+				highlight NvimTreeNormal guibg=NONE ctermbg=NONE
+				highlight NvimTreeNormalNC guibg=NONE ctermbg=NONE
+			]])
+
       vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
       vim.keymap.set("n", "<C-h>", "<cmd>NvimTreeFocus<CR>",  { desc = "Focus NvimTree" })
 
-      -- Auto‐toggle tree when launching nvim on a directory
       vim.api.nvim_create_autocmd("VimEnter", {
         callback = function(data)
           local dir = data.file
