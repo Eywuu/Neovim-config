@@ -39,7 +39,18 @@ return {
 				italic_comments = true,
 				disable_nvimtree_bg = false,
 				color_overrides = {},
-				group_overrides = {},
+				group_overrides = {
+					NormalFloat = { bg = "NONE" },
+					FloatBorder = { bg = "NONE" },
+
+					Pmenu = { bg = "NONE" },
+					PmenuSel = { bg = "NONE" },
+					PmenuSbar = { bg = "NONE" },
+					PmenuThumb = { bg = "NONE" },
+
+					CmpMenu = { bg = "NONE" },
+					CmpMenuBorder = { bg = "NONE" },
+				},
 		})
 		require('vscode').load('dark')
 	end,
