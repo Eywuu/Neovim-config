@@ -14,17 +14,18 @@ lspconfig.rust_analyzer.setup({
         allFeatures = true,        
       },
       checkOnSave = {
-        command = "clippy",       
+				enable = false,
       },
+			checkOnChange = true,
       procMacro = {
         enable = true,             
       },
       inlayHints = {
         lifetimeElisionHints = {
-          enable     = false,
-          useParameterNames = false,
+          enable     = true,
+          useParameterNames = true,
         },
-        bindingModeHints = { enable = false },
+        bindingModeHints = { enable = true },
       },
       lens = {
         enable = true,             
