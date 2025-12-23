@@ -11,7 +11,6 @@ return {
 					disabled_filetypes = {},
 					always_divide_middle = false,
 				},
-				
 				sections = {
 					lualine_a = {'mode'},
       		lualine_b = {'branch', 'diff', 'diagnostics'},

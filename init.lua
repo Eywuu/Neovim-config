@@ -14,11 +14,6 @@ vim.api.nvim_create_user_command("Fmt", function()
 			if code == 0 then
 				vim.schedule(function()
 					vim.cmd("edit!")
-					vim.notify("cargo fmt completed", vim.log.levels.INFO)
-				end)
-			else
-				vim.schedule(function()
-					vim.notif("cargo fmt failed", vim.log.levels.ERROR)
 				end)
 			end
 		end,

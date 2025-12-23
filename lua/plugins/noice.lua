@@ -4,7 +4,7 @@ return {
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
-    event = "VeryLazy", -- load noice after startup
+    event = "VeryLazy",
     config = function()
       require("noice").setup({
         cmdline = {

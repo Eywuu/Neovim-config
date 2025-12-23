@@ -1,58 +1,58 @@
 return {
-	-- {
-	-- 	"ellisonleao/gruvbox.nvim",
-	-- 	priority = 1000,
-	-- 	config = function() 
-	-- 		require("gruvbox").setup({
-	-- 			terminal_colors = false, 
-	-- 			undercurl = true,
-	-- 			underline = true,
-	-- 			bold = true,
-	-- 			italic = {
-	-- 				strings = true,
-	-- 				emphasis = true,
-	-- 				comments = true,
-	-- 				operators = false,
-	-- 				folds = true,
-	-- 			},
-	-- 			strikethrough = true,
-	-- 			invert_selection = false,
-	-- 			invert_signs = false,
-	-- 			invert_tabline = false,
-	-- 			inverse = true, 
-	-- 			contrast = "", 
-	-- 			palette_overrides = {},
-	-- 			overrides = {},
-	-- 			dim_inactive = false,
-	-- 			transparent_mode = false,
-	-- 		})
-	-- 		vim.cmd.colorscheme("gruvbox")
-	-- end,
-	-- }
 	{
-		"Mofiqul/vscode.nvim",
-		lazy = false,
+		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
-		config = function()
-			require('vscode').setup({
-				transparent = true,
-				italic_comments = true,
-				disable_nvimtree_bg = false,
-				color_overrides = {},
-				group_overrides = {
-					NormalFloat = { bg = "NONE" },
-					FloatBorder = { bg = "NONE" },
-
-					Pmenu = { bg = "NONE" },
-					PmenuSel = { bg = "NONE" },
-					PmenuSbar = { bg = "NONE" },
-					PmenuThumb = { bg = "NONE" },
-
-					CmpMenu = { bg = "NONE" },
-					CmpMenuBorder = { bg = "NONE" },
+		config = function() 
+			require("gruvbox").setup({
+				terminal_colors = false, 
+				undercurl = true,
+				underline = true,
+				bold = true,
+				italic = {
+					strings = true,
+					emphasis = true,
+					comments = true,
+					operators = false,
+					folds = true,
 				},
-		})
-		require('vscode').load('dark')
+				strikethrough = true,
+				invert_selection = false,
+				invert_signs = false,
+				invert_tabline = false,
+				inverse = true, 
+				contrast = "", 
+				palette_overrides = {},
+				overrides = {},
+				dim_inactive = false,
+				transparent_mode = false,
+			})
+			vim.cmd.colorscheme("gruvbox")
 	end,
 	}
+	-- {
+	-- 	"Mofiqul/vscode.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require('vscode').setup({
+	-- 			transparent = true,
+	-- 			italic_comments = true,
+	-- 			disable_nvimtree_bg = false,
+	-- 			color_overrides = {},
+	-- 			group_overrides = {
+	-- 				NormalFloat = { bg = "NONE" },
+	-- 				FloatBorder = { bg = "NONE" },
+	--
+	-- 				Pmenu = { bg = "NONE" },
+	-- 				PmenuSel = { bg = "NONE" },
+	-- 				PmenuSbar = { bg = "NONE" },
+	-- 				PmenuThumb = { bg = "NONE" },
+	--
+	-- 				CmpMenu = { bg = "NONE" },
+	-- 				CmpMenuBorder = { bg = "NONE" },
+	-- 			},
+	-- 	})
+	-- 	require('vscode').load('dark')
+	-- end,
+	-- }
 }

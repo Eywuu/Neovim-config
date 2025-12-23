@@ -11,25 +11,13 @@ lspconfig.rust_analyzer.setup({
   settings = {
     ["rust-analyzer"] = {
       cargo = {
-        allFeatures = true,        
-      },
-      checkOnSave = {
-				enable = false,
-      },
+        allFeatures = true, },
+      checkOnSave = { enable = false, },
 			checkOnChange = true,
-      procMacro = {
-        enable = true,             
-      },
-      inlayHints = {
-				enable = true,
-			},
-
-			bindingModeHints = { 
-				enable = true 
-			},
-      lens = {
-        enable = true,             
-      },
+      procMacro = { enable = true, },
+      inlayHints = { enable = true, },
+			bindingModeHints = { enable = true, },
+      lens = { enable = true, },
     },
   },
 })

@@ -53,7 +53,6 @@ return {
         },
       }
 
-      -- You can copy this if needed for C or Rust
       dap.configurations.c = dap.configurations.cpp
       dap.configurations.rust = dap.configurations.cpp
 

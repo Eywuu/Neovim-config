@@ -13,7 +13,7 @@ return {
 				vim.diagnostic.config({
 					virtual_text = false,
 					virtual_lines = {
-						only_current_line = true,
+						only_current_line = false,
 					},
 					underline = true,
 					signs = { text = icons },
