@@ -1,6 +1,7 @@
 return {
   {
     "mfussenegger/nvim-dap",
+    lazy = false, -- Ensure DAP loads on startup
     dependencies = {
       "rcarriga/nvim-dap-ui",
       "williamboman/mason.nvim",
@@ -34,7 +35,7 @@ return {
         type = "server",
         port = "${port}",
         executable = {
-          command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
+          command = vim.fn.stdpath("data") .. "/mason/bin/codelldb.cmd",
           args = { "--port", "${port}" },
         },
       }
@@ -48,7 +49,7 @@ return {
             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
           end,
           cwd = "${workspaceFolder}",
-          stopOnEntry = false,
+          stopOnEntry = true, -- Pause at program entry to verify debugger works
           args = {},
         },
       }

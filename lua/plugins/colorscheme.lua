@@ -19,8 +19,8 @@ return {
 				invert_selection = false,
 				invert_signs = false,
 				invert_tabline = false,
-				inverse = true, 
-				contrast = "", 
+				inverse = true,
+				contrast = "",
 				palette_overrides = {},
 				overrides = {},
 				dim_inactive = false,
@@ -28,7 +28,7 @@ return {
 			})
 			vim.cmd.colorscheme("gruvbox")
 	end,
-	}
+	},
 	-- {
 	-- 	"Mofiqul/vscode.nvim",
 	-- 	lazy = false,
@@ -54,5 +54,13 @@ return {
 	-- 	})
 	-- 	require('vscode').load('dark')
 	-- end,
+	-- }
+	-- {
+	-- 	"yorumicolors/yorumi.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		vim.cmd("colorscheme yorumi")
+	-- 	end
 	-- }
 }
